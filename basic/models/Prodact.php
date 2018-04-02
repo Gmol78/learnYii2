@@ -20,10 +20,10 @@ class Prodact extends \yii\base\Model {
     public $price;
 /**
  * 
- * @param type $id
- * @param type $name
- * @param type $category
- * @param type $price
+ * @param int $id
+ * @param string $name
+ * @param string $category
+ * @param int $price
  */
     function setPropertes ($id=0, $name='', $category='', $price=0){
         $this->id =$id;
@@ -34,7 +34,7 @@ class Prodact extends \yii\base\Model {
     
     /**
      * 
-     * @return type
+     * @return array
      */
     public function attributeLabels() {
         return ['category' => 'категория'];

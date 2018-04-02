@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
         Обход свойств объекта Prodact с поиощью foreach 
     </p>
     <p>
-        <?php foreach ($data as $key => $value): ?>
+    <?php foreach ($data as $key => $value): ?>
         <p>
             свойство: <?= $key ?> значение: <?= $value ?>
         </p>
