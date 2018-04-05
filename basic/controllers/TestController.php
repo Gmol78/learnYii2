@@ -17,8 +17,11 @@ class TestController extends Controller {
      * @return string
      */
     function actionIndex() {
-        $model = new Prodact();
-        $model->setPropertes(12, 'best prodact', 'tools', '300');
-        return $this->render('index', ['data'=>$model]);
+        $prop = \Yii::$app->test->getProperty();
+        return $this->render('index', ['data'=>$prop]);
+        
+        //$model = new Prodact();
+        //$model->setPropertes(12, 'best prodact', 'tools', '300');
+        //return $this->render('index', ['data'=>$model]);
     }
 }
