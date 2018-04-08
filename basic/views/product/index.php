@@ -32,7 +32,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'name',
                 'format' => 'html',
                 'value' => function ($rowMod) {
-                    return Html::a($rowMod->name, '/product/view?id='.$rowMod->id);
+                    return Html::a($rowMod->name , ['product/view', 'id' => $rowMod->id]);
+                    //return Html::a($rowMod->name ,\yii\helpers\Url::to(['product/view', 'id' => $rowMod->id]));
                 }
             ],
             'price',
