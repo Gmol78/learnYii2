@@ -10,6 +10,13 @@ use yii\widgets\Pjax;
 
 $this->title = 'Products';
 $this->params['breadcrumbs'][] = $this->title;
+
+
+//$products = \Yii::$app->db->createCommand('SELECT * FROM product')->queryAll();
+//\yii\helpers\VarDumper::dump($products);
+
+
+
 ?>
 <div class="product-index">
 
