@@ -14,7 +14,7 @@ class m180412_094508_create_table_access extends Migration
     {
         $this->createTable('access', [
            'id'=> $this->primaryKey()->notNull(),
-            'not_id'=> $this->integer()->notNull(),
+            'note_id'=> $this->integer()->notNull(),
             'user_id'=> $this->integer()->notNull(),
         ]);
 
