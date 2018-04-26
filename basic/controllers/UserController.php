@@ -17,29 +17,50 @@ class UserController extends Controller
   
     
     public function actionTest() {
-        $user = new User;
-        $user->attributes = [
-            'username'=>'testusername',
-            'name'=>'testname',
-            'surname'=>'testsurname',
-            'password_hash'=>'87878778'            
+      $user = new User;
+      $user->attributes = [
+            'username' => 'testusername',
+            'name' => 'testname',
+            'surname' => 'testsurname',
+            'password_hash' => '87878778'
         ];
         $user->save();
+
+        $note1 = new \app\models\Note();
+        $note1->text = 'text1 user text1 user';
+        $note1->link('creator', $user);
+        $note1->save();
+
+        $note2 = new \app\models\Note();
+        $note2->text = 'text2 user text2 user';
+        $note2->link('creator', $user);
+        $note2->save();
+
+        $note3 = new \app\models\Note();
+        $note3->text = 'text3 user text3 user';
+        $note3->link('creator', $user);
+        $note3->save();
         
-        $note = new \app\models\Note();
-        $note->text = 'text1 user text1 user';
-        $note->link('creator', $user);
-        $note->save();
+        $users1 = User::find()
+                ->with('notes')
+                ->asArray()
+                ->all();
+
+        echo '<pre>';
+        print_r($users1);
+        echo '</pre>';
+        echo '<hr>';
         
-        $note->text = 'text2 user text2 user';
-        $note->link('creator', $user);
-        $note->save();
-        
-        $note->text = 'text3 user text3 user';
-        $note->link('creator', $user);
-        $note->save();
-        
-        // todo ?? перезаписывается
+        $users2 = User::find()
+                ->with('notes')
+                ->leftJoin('note', '`note`.`creator_id` = `user`.`id`')
+                ->asArray()
+                ->all();
+
+        echo '<pre>';
+        print_r($users2);
+        echo '</pre>';
+        echo '<hr>';
         
     }
 

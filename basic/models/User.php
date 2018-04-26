@@ -76,6 +76,11 @@ class User extends \yii\db\ActiveRecord
         return $this->hasMany(Note::className(), ['creator_id' => 'id']);
     }
 
+    public function getAccessedNotes () {
+        return $this->hasMany(Note::className(), ['creator_id' => 'id'])
+            ->via('accesses');
+    }
+
     /**
      * @inheritdoc
      * @return UserQuery the active query used by this AR class.
