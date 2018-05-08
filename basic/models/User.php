@@ -77,9 +77,18 @@ class User extends \yii\db\ActiveRecord
     }
 
     public function getAccessedNotes () {
-        return $this->hasMany(Note::className(), ['creator_id' => 'id'])
-            ->via('accesses');
+        return $this->hasMany(Note::className(), ['creator_id' => 'user_id', 'id' => 'note_id'])
+            ->viaTable('access', ['user_id' => 'id']);
     }
+
+    /*public function getAccess () {
+        return $this->hasMany(Access::className(), ['user_id' => 'id']);
+    }
+
+    public function getAccessedNotes () {
+        return $this->hasMany(Note::className(), ['creator_id' => 'user_id', 'id' => 'note_id'])
+            ->via('access');
+    }*/
 
     /**
      * @inheritdoc

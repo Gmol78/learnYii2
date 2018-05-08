@@ -30,19 +30,22 @@ class UserController extends Controller
         $note1->text = 'text1 user text1 user';
         $note1->link('creator', $user);
         $note1->save();
+        $user->link('accessedNotes', $note1);
 
         $note2 = new \app\models\Note();
         $note2->text = 'text2 user text2 user';
         $note2->link('creator', $user);
         $note2->save();
+        $user->link('accessedNotes', $note2);
 
         $note3 = new \app\models\Note();
         $note3->text = 'text3 user text3 user';
         $note3->link('creator', $user);
         $note3->save();
+        $user->link('accessedNotes', $note3);
         
         $users1 = User::find()
-                ->with('notes')
+                ->with('notes', 'accessedNotes')
                 ->asArray()
                 ->all();
 

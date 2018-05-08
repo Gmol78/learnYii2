@@ -17,6 +17,8 @@ use Yii;
  */
 class Note extends \yii\db\ActiveRecord
 {
+
+
     /**
      * @inheritdoc
      */
