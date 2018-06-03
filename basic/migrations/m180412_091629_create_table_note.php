@@ -18,7 +18,7 @@ class m180412_091629_create_table_note extends Migration
             'id'=> $this->primaryKey()->notNull(),
             'text'=> $this->string()->notNull(),
             'creator_id'=> $this->integer()->notNull(),
-            'crated_at'=> $this->integer()->null()
+            'created_at'=> $this->integer()->null()
         ]);
 
     }

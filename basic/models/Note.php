@@ -3,6 +3,8 @@
 namespace app\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "note".
@@ -34,7 +36,7 @@ class Note extends \yii\db\ActiveRecord
     {
         return [
             [['text', 'creator_id'], 'required'],
-            [['creator_id', 'crated_at'], 'integer'],
+            [['creator_id', 'created_at'], 'integer'],
             [['text'], 'string', 'max' => 255],
             [['creator_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['creator_id' => 'id']],
         ];
@@ -76,5 +78,17 @@ class Note extends \yii\db\ActiveRecord
     public static function find()
     {
         return new NoteQuery(get_called_class());
+    }
+
+    public function behaviors()
+    {
+        return [
+            [
+                'class'=> TimestampBehavior::className(),
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => ['created_at']
+                ]
+            ]
+        ];
     }
 }
